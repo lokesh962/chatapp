@@ -1,8 +1,21 @@
 //node server which will handle socket io connections
 const { Server } = require("socket.io");
-const io=require('socket.io')(process.env.PORT || 8000);
+const express=require('express');
+const app=express();
+const PORT=process.env.PORT || 8000;
+const http=require('http').Server(app);
+const io=require('socket.io')(http);
 
 const users={};
+
+app.use(express.static('public'))
+
+app.get('/',(req,res)=>{
+    // res.sendFile(__dirname + '/index.html')
+    res.send('./index.html')
+});
+
+
 
 io.on('connection',socket=>{
     //if any new user joins,let other users know
@@ -26,3 +39,8 @@ io.on('connection',socket=>{
 
 
 });
+
+app.listen(PORT,()=>{
+    console.log(`running on ${PORT}`);
+    
+})

@@ -1,4 +1,4 @@
-const socket= io('http://localhost: process.env.PORT || 8000',{transports:['websocket']});
+const socket= io({transports:['websocket']});
 
 //get DOM elements in jS variables
 const form=document.getElementById('send');
