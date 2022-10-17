@@ -104,14 +104,14 @@
 
 const express=require('express');
 const app=express();
-var server=app.listen(process.env.PORT||8000);
+var server=app.listen(8000);
 
 app.use(express.static('static_folder'));
 console.log('server is running');
 
 const socket=require('socket.io');
 
-const io=socket(server);
+const io=socket(process.env.PORT || server);
 
 const users={};
 
