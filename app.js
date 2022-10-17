@@ -115,6 +115,10 @@ const io=socket(server);
 
 const users={};
 
+app.get('/',(req,res)=>{
+    res.send('hello')
+})
+
 
 io.on('connection',socket=>{
         //if any new user joins,let other users know
